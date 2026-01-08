@@ -38,6 +38,7 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          light: "hsl(var(--accent-light))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -47,13 +48,23 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        navy: {
-          DEFAULT: "hsl(var(--navy))",
-          light: "hsl(var(--navy-light))",
+        indigo: {
+          DEFAULT: "hsl(var(--indigo))",
+          dark: "hsl(var(--indigo-dark))",
+          light: "hsl(var(--indigo-light))",
         },
-        blue: {
-          accent: "hsl(var(--blue-accent))",
-          light: "hsl(var(--blue-light))",
+        slate: {
+          DEFAULT: "hsl(var(--slate))",
+          light: "hsl(var(--slate-light))",
+        },
+        graphite: "hsl(var(--graphite))",
+        emerald: {
+          DEFAULT: "hsl(var(--emerald))",
+          light: "hsl(var(--emerald-light))",
+        },
+        violet: {
+          DEFAULT: "hsl(var(--violet))",
+          light: "hsl(var(--violet-light))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
