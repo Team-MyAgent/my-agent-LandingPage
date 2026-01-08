@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 210 20% 99%;
+    --background: 0 0% 100%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -15,34 +15,42 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 222 47% 11%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 32% 91%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 214 32% 96%;
+    --muted: 220 14% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 217 91% 60%;
+    --accent: 239 84% 67%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 239 84% 67%;
 
     --radius: 0.75rem;
 
-    /* Custom tokens for My Agent */
-    --navy: 222 47% 11%;
-    --navy-light: 217 33% 17%;
-    --blue-accent: 217 91% 60%;
-    --blue-light: 214 100% 97%;
-    --gradient-start: 217 91% 60%;
-    --gradient-end: 199 89% 48%;
+    /* Custom tokens for My Agent - Indigo/Purple Theme */
+    --indigo: 239 84% 67%;
+    --indigo-dark: 239 84% 57%;
+    --indigo-light: 245 58% 51%;
+    --slate: 215 28% 17%;
+    --slate-light: 217 19% 27%;
+    --graphite: 222 47% 11%;
+    --emerald: 160 84% 39%;
+    --emerald-light: 158 64% 52%;
+    --violet: 262 83% 58%;
+    --violet-light: 263 70% 50%;
+    --accent-light: 245 100% 97%;
+    --gradient-start: 239 84% 67%;
+    --gradient-mid: 262 83% 58%;
+    --gradient-end: 160 84% 39%;
     
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -51,7 +59,7 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 239 84% 67%;
   }
 
   .dark {
@@ -64,8 +72,8 @@
     --popover: 222 47% 8%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
@@ -73,7 +81,7 @@
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 217 91% 60%;
+    --accent: 239 84% 67%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 63% 31%;
@@ -81,16 +89,16 @@
 
     --border: 217 33% 17%;
     --input: 217 33% 17%;
-    --ring: 217 91% 60%;
+    --ring: 239 84% 67%;
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary: 239 84% 67%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 239 84% 67%;
   }
 }
 
@@ -111,18 +119,28 @@
 
 @layer components {
   .gradient-bg {
-    background: linear-gradient(135deg, hsl(var(--gradient-start)) 0%, hsl(var(--gradient-end)) 100%);
+    background: linear-gradient(135deg, hsl(var(--gradient-start)) 0%, hsl(var(--gradient-mid)) 50%, hsl(var(--gradient-end)) 100%);
+  }
+  
+  .gradient-indigo {
+    background: linear-gradient(135deg, hsl(var(--indigo)) 0%, hsl(var(--violet)) 100%);
+  }
+  
+  .gradient-emerald {
+    background: linear-gradient(135deg, hsl(var(--emerald)) 0%, hsl(var(--emerald-light)) 100%);
   }
   
   .gradient-text {
-    background: linear-gradient(135deg, hsl(var(--gradient-start)) 0%, hsl(var(--gradient-end)) 100%);
+    background: linear-gradient(135deg, hsl(var(--indigo)) 0%, hsl(var(--violet)) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   
   .hero-gradient {
-    background: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(217 91% 60% / 0.15), transparent);
+    background: 
+      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(239 84% 67% / 0.12), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(262 83% 58% / 0.08), transparent);
   }
   
   .card-hover {
@@ -139,6 +157,10 @@
   
   .container-padding {
     @apply px-4 md:px-6 lg:px-8;
+  }
+  
+  .highlight-row {
+    @apply bg-accent-light border-l-4 border-l-indigo;
   }
 }
 

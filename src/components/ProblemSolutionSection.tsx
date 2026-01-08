@@ -1,4 +1,4 @@
-import { X, Check, AlertTriangle, DollarSign, Clock, Target, Coins, Timer } from "lucide-react";
+import { X, Check, AlertTriangle, DollarSign, Clock, Target, Coins, Timer, Sparkles } from "lucide-react";
 
 const ProblemSolutionSection = () => {
   const problems = [
@@ -28,19 +28,23 @@ const ProblemSolutionSection = () => {
     {
       icon: Coins,
       title: "합리적인 가격",
-      description: "스타트업도 부담 없는 월 20만원부터 시작",
+      description: "스타트업도 부담 없는 월 8만원부터 시작",
     },
     {
       icon: Timer,
-      title: "1시간 내 구축",
-      description: "문서 업로드만으로 즉시 학습 완료 및 서비스 시작",
+      title: "1~2주 내 도입",
+      description: "문서 업로드 기반 빠른 RAG 인덱싱으로 신속 구축",
     },
   ];
 
   return (
-    <section className="section-padding bg-muted/30">
+    <section className="section-padding">
       <div className="container mx-auto container-padding">
         <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-light border border-indigo/20 text-indigo text-sm font-medium mb-6">
+            <Sparkles className="w-4 h-4" />
+            <span>문제 해결</span>
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             기존 챗봇의 한계, <span className="gradient-text">My Agent</span>로 해결하세요
           </h2>
@@ -79,19 +83,19 @@ const ProblemSolutionSection = () => {
           {/* Solutions Column */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                <Check className="w-4 h-4 text-green-600" />
+              <div className="w-8 h-8 rounded-full bg-emerald/10 flex items-center justify-center">
+                <Check className="w-4 h-4 text-emerald" />
               </div>
               <h3 className="text-xl font-semibold text-foreground">My Agent 솔루션</h3>
             </div>
             {solutions.map((solution, index) => (
               <div
                 key={index}
-                className="bg-card rounded-xl p-5 border border-border hover:border-green-300 transition-colors card-hover"
+                className="bg-card rounded-xl p-5 border border-border hover:border-emerald/30 transition-colors card-hover"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
-                    <solution.icon className="w-5 h-5 text-green-600" />
+                  <div className="w-10 h-10 rounded-lg bg-emerald/10 flex items-center justify-center flex-shrink-0">
+                    <solution.icon className="w-5 h-5 text-emerald" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">{solution.title}</h4>

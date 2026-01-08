@@ -1,4 +1,4 @@
-import { Target, Zap, Wrench, Shield } from "lucide-react";
+import { Target, Zap, Wrench, Shield, Sparkles } from "lucide-react";
 
 const FeaturesSection = () => {
   const features = [
@@ -7,24 +7,28 @@ const FeaturesSection = () => {
       title: "95% 정확도",
       description: "의미 기반 검색과 하이브리드 검색을 통한 정교한 답변. 환각 없이 회사 문서에 기반한 신뢰할 수 있는 정보만 제공합니다.",
       highlight: "Semantic + Hybrid Search",
+      gradient: "from-indigo to-violet",
     },
     {
       icon: Zap,
       title: "빠른 통합",
-      description: "PDF, 노션, 정책 문서를 업로드하는 즉시 학습 완료. 복잡한 개발 과정 없이 1시간 내에 서비스를 시작할 수 있습니다.",
-      highlight: "1-Hour Setup",
+      description: "PDF, 노션, 정책 문서를 업로드하는 즉시 학습 완료. eesel AI 스타일의 빠른 인덱싱으로 복잡한 개발 과정 없이 1시간 내에 서비스를 시작할 수 있습니다.",
+      highlight: "Quick Indexing",
+      gradient: "from-violet to-indigo-light",
     },
     {
       icon: Wrench,
       title: "실행형 에이전트",
       description: "단순 답변을 넘어 배송 조회, 예약 변경 등 실제 업무 처리를 지원합니다. API 연동으로 완전한 자동화를 경험하세요.",
-      highlight: "Action-Based AI",
+      highlight: "Actionable Agent",
+      gradient: "from-emerald to-emerald-light",
     },
     {
       icon: Shield,
       title: "엔터프라이즈 보안",
       description: "데이터 암호화 및 개인정보 마스킹 엔진을 탑재하여 민감한 고객 정보를 안전하게 보호합니다.",
       highlight: "SOC 2 Compliant",
+      gradient: "from-slate to-slate-light",
     },
   ];
 
@@ -32,6 +36,10 @@ const FeaturesSection = () => {
     <section id="features" className="section-padding">
       <div className="container mx-auto container-padding">
         <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-light border border-indigo/20 text-indigo text-sm font-medium mb-6">
+            <Sparkles className="w-4 h-4" />
+            <span>핵심 기능</span>
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             <span className="gradient-text">강력한 기능</span>으로 CS를 혁신하세요
           </h2>
@@ -44,13 +52,13 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group bg-card rounded-2xl p-6 border border-border hover:border-blue-accent/30 transition-all duration-300 card-hover"
+              className="group bg-card rounded-2xl p-6 border border-border hover:border-indigo/30 transition-all duration-300 card-hover"
             >
-              <div className="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <feature.icon className="w-6 h-6 text-accent-foreground" />
+              <div className={`w-12 h-12 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+                <feature.icon className="w-6 h-6 text-white" />
               </div>
               
-              <div className="inline-block px-3 py-1 rounded-full bg-blue-light text-blue-accent text-xs font-medium mb-3">
+              <div className="inline-block px-3 py-1 rounded-full bg-accent-light text-indigo text-xs font-medium mb-3">
                 {feature.highlight}
               </div>
               

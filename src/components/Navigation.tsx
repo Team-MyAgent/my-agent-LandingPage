@@ -31,8 +31,8 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
-              <span className="text-accent-foreground font-bold text-sm">M</span>
+            <div className="w-8 h-8 gradient-indigo rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">M</span>
             </div>
             <span className="font-bold text-xl text-foreground">My Agent</span>
           </a>

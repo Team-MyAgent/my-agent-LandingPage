@@ -23,29 +23,29 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-primary text-primary-foreground py-16">
+    <footer className="bg-slate text-white py-16">
       <div className="container mx-auto container-padding">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Logo & Description */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center">
-                <Bot className="w-5 h-5 text-accent-foreground" />
+              <div className="w-10 h-10 gradient-indigo rounded-xl flex items-center justify-center">
+                <Bot className="w-5 h-5 text-white" />
               </div>
               <span className="font-bold text-xl">My Agent</span>
             </div>
-            <p className="text-primary-foreground/70 mb-6 max-w-sm">
+            <p className="text-white/70 mb-6 max-w-sm">
               RAG 기술 기반의 AI 고객 상담 솔루션. 
               정확하고 신뢰할 수 있는 답변으로 CS를 자동화하세요.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors flex items-center justify-center">
+              <a href="#" className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors flex items-center justify-center">
+              <a href="#" className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors flex items-center justify-center">
+              <a href="#" className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center">
                 <Github className="w-5 h-5" />
               </a>
             </div>
@@ -59,7 +59,7 @@ const Footer = () => {
                 <li key={index}>
                   <a 
                     href={link.href} 
-                    className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm"
+                    className="text-white/70 hover:text-white transition-colors text-sm"
                   >
                     {link.label}
                   </a>
@@ -76,7 +76,7 @@ const Footer = () => {
                 <li key={index}>
                   <a 
                     href={link.href} 
-                    className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm"
+                    className="text-white/70 hover:text-white transition-colors text-sm"
                   >
                     {link.label}
                   </a>
@@ -93,7 +93,7 @@ const Footer = () => {
                 <li key={index}>
                   <a 
                     href={link.href} 
-                    className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm"
+                    className="text-white/70 hover:text-white transition-colors text-sm"
                   >
                     {link.label}
                   </a>
@@ -104,12 +104,12 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-primary-foreground/10">
+        <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-primary-foreground/60">
+            <p className="text-sm text-white/60">
               © 2024 My Agent. All rights reserved.
             </p>
-            <p className="text-sm text-primary-foreground/60">
+            <p className="text-sm text-white/60">
               Made with ❤️ in Seoul, Korea
             </p>
           </div>
