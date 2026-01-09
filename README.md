@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://id-preview--c6a069a4-dfd7-4806-a99a-207860aed460.lovable.app/?__lovable_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZFlyMHQxVkJRM01Pa0dyUlJRcE1YQ2lIS2hyMSIsInByb2plY3RfaWQiOiJjNmEwNjlhNC1kZmQ3LTQ4MDYtYTk5YS0yMDc4NjBhZWQ0NjAiLCJub25jZSI6IjAwOWIxMGQxZGQ5ZGM3YjYwYzVjNjQ5ZjNiZmFmMDVhIiwiaXNzIjoibG92YWJsZS1hcGkiLCJzdWIiOiJjNmEwNjlhNC1kZmQ3LTQ4MDYtYTk5YS0yMDc4NjBhZWQ0NjAiLCJhdWQiOlsibG92YWJsZS1hcHAiXSwiZXhwIjoxNzY4NTQxNzgzLCJuYmYiOjE3Njc5MzY5ODMsImlhdCI6MTc2NzkzNjk4M30.ODHw0ll1HRNv7tYHcyIn3a9znniEDyq0ma3QJi1UPAE
+**URL**: https://my-agent-landing-page.vercel.app/
 
 ## How can I edit this code?
 
