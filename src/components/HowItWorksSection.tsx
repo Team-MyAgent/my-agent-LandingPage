@@ -29,7 +29,7 @@ const HowItWorksSection = () => {
   ];
 
   return (
-    <section id="how-it-works" className="section-padding bg-muted/30">
+    <section id="process" className="section-padding bg-muted/30">
       <div className="container mx-auto container-padding">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-light border border-indigo/20 text-indigo text-sm font-medium mb-6">

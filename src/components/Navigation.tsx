@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Bot } from "lucide-react";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,11 +15,28 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { href: "#features", label: "Features" },
-    { href: "#pricing", label: "Pricing" },
-    { href: "#how-it-works", label: "How it Works" },
-    { href: "#contact", label: "Contact" },
+    { href: "#problem-solving", label: "문제 해결" },
+    { href: "#features", label: "핵심 기능" },
+    { href: "#process", label: "도입 과정" },
+    { href: "#faq", label: "FAQ" },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleContactClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    const element = document.querySelector("#contact");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <nav
@@ -31,8 +48,8 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 gradient-indigo rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">M</span>
+            <div className="w-10 h-10 gradient-indigo rounded-xl flex items-center justify-center">
+              <Bot className="w-5 h-5 text-white" />
             </div>
             <span className="font-bold text-xl text-foreground">My Agent</span>
           </a>
@@ -44,6 +61,7 @@ const Navigation = () => {
                 key={link.href}
                 href={link.href}
                 className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
+                onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
               </a>
@@ -55,8 +73,18 @@ const Navigation = () => {
             <Button variant="ghost" size="sm">
               로그인
             </Button>
-            <Button variant="gradient" size="sm">
-              무료로 시작하기
+            <Button
+              variant="gradient"
+              size="sm"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.querySelector("#contact");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
+            >
+              도입 문의하기
             </Button>
           </div>
 
@@ -82,7 +110,10 @@ const Navigation = () => {
                   key={link.href}
                   href={link.href}
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium px-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    handleNavClick(e, link.href);
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   {link.label}
                 </a>
@@ -91,8 +122,8 @@ const Navigation = () => {
                 <Button variant="outline" className="w-full">
                   로그인
                 </Button>
-                <Button variant="gradient" className="w-full">
-                  무료로 시작하기
+                <Button variant="gradient" className="w-full" onClick={handleContactClick}>
+                  도입 문의하기
                 </Button>
               </div>
             </div>

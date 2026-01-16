@@ -109,9 +109,7 @@ const Footer = () => {
             <p className="text-sm text-white/60">
               © 2024 My Agent. All rights reserved.
             </p>
-            <p className="text-sm text-white/60">
-              Made with ❤️ in Seoul, Korea
-            </p>
+            
           </div>
         </div>
       </div>

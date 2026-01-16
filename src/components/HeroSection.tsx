@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Bot, MessageSquare, Zap, TrendingDown, Shield } from "lucide-react";
+import { ArrowRight, Bot, MessageSquare, Zap, TrendingDown, Shield } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -9,34 +9,39 @@ const HeroSection = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-light border border-indigo/20 text-indigo text-sm font-medium mb-8 animate-fade-up">
             <Zap className="w-4 h-4" />
-            <span>RAG 기반 AI 솔루션</span>
+            <span>기업용 지능형 AI 상담 에이전트</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            거품을 뺀 구축비,
+          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-[1.2] mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            상담원 <span className="gradient-text">10명 이상의 효율</span>,
             <br />
-            <span className="gradient-text">압도적인 정확도.</span>
-            <br />
-            우리 회사 전용 RAG 챗봇.
+            AI 도입 하나로 <span className="gradient-text">완성</span>됩니다.
           </h1>
 
           {/* Sub-headline */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            수천만 원의 컨설팅 비용 없이,
+          <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 animate-fade-up leading-relaxed font-medium" style={{ animationDelay: "0.2s" }}>
+            단순 반복 문의의 80%를 자동화하여,
             <br className="hidden md:block" />
-            스타트업도 즉시 도입 가능한 지능형 CS 에이전트를 만나보세요.
+            상담팀이 더 중요한 고객 경험에 집중하게 만드세요.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-            <Button variant="gradient" size="lg" className="w-full sm:w-auto">
-              무료로 시작하기
+            <Button
+              variant="gradient"
+              size="lg"
+              className="w-full sm:w-auto"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.querySelector("#contact");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
+            >
+              도입 문의하기
               <ArrowRight className="w-5 h-5" />
-            </Button>
-            <Button variant="outline-light" size="lg" className="w-full sm:w-auto">
-              <Play className="w-5 h-5" />
-              데모 시연 예약
             </Button>
           </div>
 
