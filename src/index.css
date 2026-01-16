@@ -15,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 239 84% 67%;
+    --primary: 156 100% 19%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 215 28% 17%;
@@ -24,7 +24,7 @@
     --muted: 220 14% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 239 84% 67%;
+    --accent: 156 100% 19%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -32,14 +32,14 @@
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 239 84% 67%;
+    --ring: 156 100% 19%;
 
     --radius: 0.75rem;
 
-    /* Custom tokens for My Agent - Indigo/Purple Theme */
-    --indigo: 239 84% 67%;
-    --indigo-dark: 239 84% 57%;
-    --indigo-light: 245 58% 51%;
+    /* Custom tokens for My Agent - Rolex Theme */
+    --indigo: 156 100% 19%;
+    --indigo-dark: 156 100% 14%;
+    --indigo-light: 156 100% 24%;
     --slate: 215 28% 17%;
     --slate-light: 217 19% 27%;
     --graphite: 222 47% 11%;
@@ -47,10 +47,10 @@
     --emerald-light: 158 64% 52%;
     --violet: 262 83% 58%;
     --violet-light: 263 70% 50%;
-    --accent-light: 245 100% 97%;
-    --gradient-start: 239 84% 67%;
-    --gradient-mid: 262 83% 58%;
-    --gradient-end: 160 84% 39%;
+    --accent-light: 156 100% 97%;
+    --gradient-start: 156 100% 19%;
+    --gradient-mid: 156 100% 17%;
+    --gradient-end: 156 100% 14%;
     
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -59,7 +59,7 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 239 84% 67%;
+    --sidebar-ring: 156 100% 19%;
   }
 
   .dark {
@@ -72,7 +72,7 @@
     --popover: 222 47% 8%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 239 84% 67%;
+    --primary: 156 100% 19%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 217 33% 17%;
@@ -81,7 +81,7 @@
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 239 84% 67%;
+    --accent: 156 100% 19%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 63% 31%;
@@ -89,16 +89,16 @@
 
     --border: 217 33% 17%;
     --input: 217 33% 17%;
-    --ring: 239 84% 67%;
+    --ring: 156 100% 19%;
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 239 84% 67%;
+    --sidebar-primary: 156 100% 19%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 239 84% 67%;
+    --sidebar-ring: 156 100% 19%;
   }
 }
 
@@ -115,6 +115,17 @@
   html {
     scroll-behavior: smooth;
   }
+  
+  /* Scroll margin for anchor links to prevent header overlap */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+  
+  @media (min-width: 768px) {
+    section[id] {
+      scroll-margin-top: 6rem;
+    }
+  }
 }
 
 @layer components {
@@ -123,7 +134,7 @@
   }
   
   .gradient-indigo {
-    background: linear-gradient(135deg, hsl(var(--indigo)) 0%, hsl(var(--violet)) 100%);
+    background: linear-gradient(135deg, hsl(var(--indigo)) 0%, hsl(var(--indigo-dark)) 100%);
   }
   
   .gradient-emerald {
@@ -131,7 +142,7 @@
   }
   
   .gradient-text {
-    background: linear-gradient(135deg, hsl(var(--indigo)) 0%, hsl(var(--violet)) 100%);
+    background: hsl(var(--indigo));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -139,8 +150,8 @@
   
   .hero-gradient {
     background: 
-      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(239 84% 67% / 0.12), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(262 83% 58% / 0.08), transparent);
+      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(156 100% 19% / 0.08), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(156 100% 19% / 0.05), transparent);
   }
   
   .card-hover {
