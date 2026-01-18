@@ -1,5 +1,4 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { HelpCircle, Sparkles } from "lucide-react";
 
 const FAQSection = () => {
   const faqs = [
@@ -37,19 +36,16 @@ const FAQSection = () => {
     },
     {
       question: "도입 문의 이후에는 어떤 절차로 진행되나요?",
-      answer: "1. 상담 요청 접수(도입 문의 접수) -> 2. 매니저 배정 및 사전 질문 수집 -> 3. 상담 미팅 -> 4. 고객 맞춤 플랜 설계 및 견적 안내 -> 5. 도입 확정 및 운영 진행 순으로 진행됩니다.",
+      answer: "1. 상담 요청 접수(도입 문의 접수) → 2. 매니저 배정 및 사전 질문 수집 → 3. 상담 미팅 → 4. 고객 맞춤 플랜 설계 및 견적 안내 → 5. 도입 확정 및 운영 진행 순으로 진행됩니다.",
     },
   ];
 
   return (
-    <section id="faq" className="section-padding">
+    <section id="faq" className="section-padding bg-muted/30">
       <div className="container mx-auto container-padding">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-light border border-indigo/20 text-indigo text-sm font-medium mb-6">
-            <Sparkles className="w-4 h-4" />
-            <span>자주 묻는 질문</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-20">
+          <p className="text-emerald text-sm font-medium tracking-wide uppercase mb-4">자주 묻는 질문</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight">
             <span className="gradient-text">FAQ</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -58,20 +54,17 @@ const FAQSection = () => {
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="w-full space-y-2">
+          <Accordion type="single" collapsible className="w-full space-y-3">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-card border border-border rounded-lg px-6 hover:border-indigo/30 transition-colors"
+                className="bg-card border border-border/60 rounded-xl px-6 data-[state=open]:border-emerald/20 transition-colors"
               >
-                <AccordionTrigger className="text-left font-semibold text-foreground hover:text-indigo transition-colors py-6">
-                  <div className="flex items-center gap-3">
-                    <HelpCircle className="w-5 h-5 text-indigo shrink-0" />
-                    <span>{faq.question}</span>
-                  </div>
+                <AccordionTrigger className="text-left font-medium text-foreground hover:text-emerald transition-colors py-5 hover:no-underline">
+                  <span className="pr-4">{faq.question}</span>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6 pl-8">
+                <AccordionContent className="text-muted-foreground leading-relaxed pb-5 text-sm">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

@@ -48,23 +48,21 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        indigo: {
-          DEFAULT: "hsl(var(--indigo))",
-          dark: "hsl(var(--indigo-dark))",
-          light: "hsl(var(--indigo-light))",
+        emerald: {
+          DEFAULT: "hsl(var(--emerald))",
+          dark: "hsl(var(--emerald-dark))",
+          light: "hsl(var(--emerald-light))",
+          muted: "hsl(var(--emerald-muted))",
         },
         slate: {
           DEFAULT: "hsl(var(--slate))",
           light: "hsl(var(--slate-light))",
+          muted: "hsl(var(--slate-muted))",
         },
-        graphite: "hsl(var(--graphite))",
-        emerald: {
-          DEFAULT: "hsl(var(--emerald))",
-          light: "hsl(var(--emerald-light))",
-        },
-        violet: {
-          DEFAULT: "hsl(var(--violet))",
-          light: "hsl(var(--violet-light))",
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          light: "hsl(var(--gold-light))",
+          muted: "hsl(var(--gold-muted))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -92,32 +90,28 @@ export default {
           to: { height: "0" },
         },
         "fade-up": {
-          from: { opacity: "0", transform: "translateY(20px)" },
+          from: { opacity: "0", transform: "translateY(24px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "fade-in": {
           from: { opacity: "0" },
           to: { opacity: "1" },
         },
-        "slide-in-right": {
-          from: { opacity: "0", transform: "translateX(20px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
-        },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "50%": { transform: "translateY(-8px)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-up": "fade-up 0.6s ease-out forwards",
-        "fade-in": "fade-in 0.5s ease-out forwards",
-        "slide-in-right": "slide-in-right 0.5s ease-out forwards",
-        float: "float 3s ease-in-out infinite",
+        "fade-up": "fade-up 0.8s ease-out forwards",
+        "fade-in": "fade-in 0.6s ease-out forwards",
+        float: "float 4s ease-in-out infinite",
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['Playfair Display', 'serif'],
       },
     },
   },

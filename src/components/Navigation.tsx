@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Bot } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,9 +16,8 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { href: "#problem-solving", label: "문제 해결" },
-    { href: "#features", label: "핵심 기능" },
-    { href: "#process", label: "도입 과정" },
+    { href: "#features", label: "기능" },
+    { href: "#features-detail", label: "특징" },
     { href: "#faq", label: "FAQ" },
   ];
 
@@ -27,35 +27,27 @@ const Navigation = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  };
-
-  const handleContactClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
     setIsMobileMenuOpen(false);
-    const element = document.querySelector("#contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
   };
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled ? "nav-scrolled" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto container-padding">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-10 h-10 gradient-indigo rounded-xl flex items-center justify-center">
+          <a href="#" className="flex items-center gap-3">
+            <div className="w-9 h-9 gradient-emerald rounded-lg flex items-center justify-center">
               <Bot className="w-5 h-5 text-white" />
             </div>
-            <span className="font-bold text-xl text-foreground">My Agent</span>
+            <span className="font-semibold text-lg text-foreground tracking-tight">My Agent</span>
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -66,13 +58,21 @@ const Navigation = () => {
                 {link.label}
               </a>
             ))}
+            <Link
+              to="/pricing"
+              className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
+            >
+              가격
+            </Link>
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost" size="sm">
-              로그인
-            </Button>
+          <div className="hidden md:flex items-center gap-4">
+            <Link to="/auth">
+              <Button variant="ghost" size="sm" className="text-muted-foreground">
+                로그인
+              </Button>
+            </Link>
             <Button
               variant="gradient"
               size="sm"
@@ -84,7 +84,7 @@ const Navigation = () => {
                 }
               }}
             >
-              도입 문의하기
+              도입 문의
             </Button>
           </div>
 
@@ -103,27 +103,44 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border bg-background">
-            <div className="flex flex-col gap-4">
+          <div className="md:hidden py-6 border-t border-border bg-background/95 backdrop-blur-xl">
+            <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium px-2"
-                  onClick={(e) => {
-                    handleNavClick(e, link.href);
-                    setIsMobileMenuOpen(false);
-                  }}
+                  className="text-muted-foreground hover:text-foreground hover:bg-muted transition-colors text-sm font-medium px-4 py-3 rounded-lg"
+                  onClick={(e) => handleNavClick(e, link.href)}
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="flex flex-col gap-2 pt-4 border-t border-border">
-                <Button variant="outline" className="w-full">
-                  로그인
-                </Button>
-                <Button variant="gradient" className="w-full" onClick={handleContactClick}>
-                  도입 문의하기
+              <Link
+                to="/pricing"
+                className="text-muted-foreground hover:text-foreground hover:bg-muted transition-colors text-sm font-medium px-4 py-3 rounded-lg"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                가격
+              </Link>
+              <div className="flex flex-col gap-3 pt-4 mt-4 border-t border-border">
+                <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button variant="outline" className="w-full">
+                    로그인
+                  </Button>
+                </Link>
+                <Button 
+                  variant="gradient" 
+                  className="w-full" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMobileMenuOpen(false);
+                    const element = document.querySelector("#contact");
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  }}
+                >
+                  도입 문의
                 </Button>
               </div>
             </div>
