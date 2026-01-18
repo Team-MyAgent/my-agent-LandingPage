@@ -4,6 +4,7 @@ import FeaturesSection from "@/components/FeaturesSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
         <FAQSection />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 };
