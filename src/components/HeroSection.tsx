@@ -16,16 +16,14 @@ const HeroSection = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-[1.1] mb-8 animate-fade-up tracking-tight" style={{ animationDelay: "0.1s" }}>
             거품을 뺀 구축비,
             <br />
-            <span className="gradient-text">압도적인 정확도.</span>
-            <br />
-            <span className="text-foreground/90">우리 회사 전용 RAG 챗봇.</span>
+            <span className="gradient-text">압도적인 정확도</span>
           </h1>
 
           {/* Sub-headline */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 animate-fade-up leading-relaxed" style={{ animationDelay: "0.2s" }}>
-            수천만 원의 컨설팅 비용 없이,
+            단순 반복 문의의 80%를 자동화하여
             <br className="hidden md:block" />
-            스타트업도 즉시 도입 가능한 지능형 CS 에이전트를 만나보세요.
+            상담팀이 더 중요한 고객 경험에 집중하게 만드세요.
           </p>
 
           {/* CTAs */}
