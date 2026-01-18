@@ -1,49 +1,51 @@
 import { Bot, Linkedin, Twitter, Github } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const Footer = () => {
   const footerLinks = {
     product: [
       { label: "기능", href: "#features" },
-      { label: "가격", href: "/pricing", isRoute: true },
-      { label: "FAQ", href: "#faq" },
+      { label: "가격", href: "#pricing" },
+      { label: "사용 방법", href: "#how-it-works" },
+      { label: "API 문서", href: "#" },
     ],
     company: [
       { label: "회사 소개", href: "#" },
+      { label: "채용", href: "#" },
       { label: "블로그", href: "#" },
       { label: "문의", href: "#contact" },
     ],
     support: [
       { label: "고객 지원", href: "#" },
+      { label: "FAQ", href: "#" },
       { label: "이용약관", href: "#" },
       { label: "개인정보처리방침", href: "#" },
     ],
   };
 
   return (
-    <footer className="bg-slate text-white py-20">
+    <footer className="bg-slate text-white py-16">
       <div className="container mx-auto container-padding">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Logo & Description */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 gradient-emerald rounded-lg flex items-center justify-center">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-10 h-10 gradient-indigo rounded-xl flex items-center justify-center">
                 <Bot className="w-5 h-5 text-white" />
               </div>
-              <span className="font-semibold text-xl tracking-tight">My Agent</span>
+              <span className="font-bold text-xl">My Agent</span>
             </div>
-            <p className="text-white/60 mb-8 max-w-sm leading-relaxed text-sm">
+            <p className="text-white/70 mb-6 max-w-sm">
               RAG 기술 기반의 AI 고객 상담 솔루션. 
               정확하고 신뢰할 수 있는 답변으로 CS를 자동화하세요.
             </p>
-            <div className="flex items-center gap-3">
-              <a href="#" className="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 transition-colors flex items-center justify-center">
+            <div className="flex items-center gap-4">
+              <a href="#" className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 transition-colors flex items-center justify-center">
+              <a href="#" className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 transition-colors flex items-center justify-center">
+              <a href="#" className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center">
                 <Github className="w-5 h-5" />
               </a>
             </div>
@@ -51,25 +53,16 @@ const Footer = () => {
 
           {/* Product Links */}
           <div>
-            <h4 className="font-medium mb-5 text-sm tracking-wide">제품</h4>
+            <h4 className="font-semibold mb-4">제품</h4>
             <ul className="space-y-3">
               {footerLinks.product.map((link, index) => (
                 <li key={index}>
-                  {link.isRoute ? (
-                    <Link 
-                      to={link.href}
-                      className="text-white/60 hover:text-white transition-colors text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a 
-                      href={link.href} 
-                      className="text-white/60 hover:text-white transition-colors text-sm"
-                    >
-                      {link.label}
-                    </a>
-                  )}
+                  <a 
+                    href={link.href} 
+                    className="text-white/70 hover:text-white transition-colors text-sm"
+                  >
+                    {link.label}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -77,13 +70,13 @@ const Footer = () => {
 
           {/* Company Links */}
           <div>
-            <h4 className="font-medium mb-5 text-sm tracking-wide">회사</h4>
+            <h4 className="font-semibold mb-4">회사</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
                   <a 
                     href={link.href} 
-                    className="text-white/60 hover:text-white transition-colors text-sm"
+                    className="text-white/70 hover:text-white transition-colors text-sm"
                   >
                     {link.label}
                   </a>
@@ -94,13 +87,13 @@ const Footer = () => {
 
           {/* Support Links */}
           <div>
-            <h4 className="font-medium mb-5 text-sm tracking-wide">지원</h4>
+            <h4 className="font-semibold mb-4">지원</h4>
             <ul className="space-y-3">
               {footerLinks.support.map((link, index) => (
                 <li key={index}>
                   <a 
                     href={link.href} 
-                    className="text-white/60 hover:text-white transition-colors text-sm"
+                    className="text-white/70 hover:text-white transition-colors text-sm"
                   >
                     {link.label}
                   </a>
@@ -112,9 +105,12 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10">
-          <p className="text-sm text-white/40">
-            © 2024 My Agent. All rights reserved.
-          </p>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-white/60">
+              © 2024 My Agent. All rights reserved.
+            </p>
+            
+          </div>
         </div>
       </div>
     </footer>

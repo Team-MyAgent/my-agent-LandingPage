@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Send, Mail, Phone, MapPin } from "lucide-react";
+import { Send, Mail, Phone, MapPin, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
@@ -19,6 +19,7 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
+    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     toast({
@@ -38,12 +39,15 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="section-padding bg-muted/30">
       <div className="container mx-auto container-padding">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-emerald text-sm font-medium tracking-wide uppercase mb-4">상담 문의</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-light border border-indigo/20 text-indigo text-sm font-medium mb-6">
+              <Sparkles className="w-4 h-4" />
+              <span>상담 문의</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               <span className="gradient-text">문의하기</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -51,18 +55,18 @@ const ContactSection = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          <div className="grid lg:grid-cols-2 gap-12">
             {/* Left Column - Info */}
             <div>
-              <p className="text-muted-foreground mb-10 leading-relaxed">
+              <p className="text-muted-foreground mb-8">
                 전문 컨설턴트가 귀사에 맞춤형 솔루션을 제안해 드립니다.
                 도입 비용, 예상 효과, 구축 기간 등 무엇이든 물어보세요.
               </p>
 
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-emerald-muted rounded-xl flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-emerald" />
+                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-indigo" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">이메일</p>
@@ -71,8 +75,8 @@ const ContactSection = () => {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-emerald-muted rounded-xl flex items-center justify-center">
-                    <Phone className="w-5 h-5 text-emerald" />
+                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-indigo" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">전화</p>
@@ -81,8 +85,8 @@ const ContactSection = () => {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-emerald-muted rounded-xl flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-emerald" />
+                  <div className="w-12 h-12 bg-accent-light rounded-xl flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-indigo" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">주소</p>
@@ -93,8 +97,8 @@ const ContactSection = () => {
             </div>
 
             {/* Right Column - Form */}
-            <div className="bento-card">
-              <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="bg-card rounded-2xl p-8 border border-border shadow-lg">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
                     회사명 *
@@ -106,7 +110,7 @@ const ContactSection = () => {
                     value={formData.company}
                     onChange={handleChange}
                     required
-                    className="h-11 focus-visible:ring-emerald"
+                    className="focus-visible:ring-indigo"
                   />
                 </div>
 
@@ -122,7 +126,7 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="h-11 focus-visible:ring-emerald"
+                    className="focus-visible:ring-indigo"
                   />
                 </div>
 
@@ -136,7 +140,7 @@ const ContactSection = () => {
                     placeholder="예: 월 1,000건"
                     value={formData.volume}
                     onChange={handleChange}
-                    className="h-11 focus-visible:ring-emerald"
+                    className="focus-visible:ring-indigo"
                   />
                 </div>
 
@@ -151,7 +155,7 @@ const ContactSection = () => {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    className="focus-visible:ring-emerald resize-none"
+                    className="focus-visible:ring-indigo"
                   />
                 </div>
 
