@@ -1,4 +1,4 @@
-import { X, Check, AlertTriangle, DollarSign, Clock, Target, Coins, Timer, Sparkles } from "lucide-react";
+import { X, Check, AlertTriangle, DollarSign, Clock, Target, Coins, Timer } from "lucide-react";
 
 const ProblemSolutionSection = () => {
   const problems = [
@@ -38,42 +38,41 @@ const ProblemSolutionSection = () => {
   ];
 
   return (
-    <section id="problem-solving" className="section-padding">
+    <section id="problem-solving" className="section-padding bg-muted/30">
       <div className="container mx-auto container-padding">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-light border border-indigo/20 text-indigo text-sm font-medium mb-6">
-            <Sparkles className="w-4 h-4" />
-            <span>문제 해결</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            기존 챗봇의 한계, <span className="gradient-text">My Agent</span>로 해결하세요
+        <div className="text-center mb-20">
+          <p className="text-emerald text-sm font-medium tracking-wide uppercase mb-4">문제 해결</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight">
+            기존 챗봇의 한계,
+            <br />
+            <span className="gradient-text">My Agent</span>로 해결하세요
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             기존 AI 챗봇의 문제점을 정확히 파악하고, 실질적인 솔루션을 제공합니다
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-16 max-w-5xl mx-auto">
           {/* Problems Column */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-full bg-destructive/10 flex items-center justify-center">
-                <X className="w-4 h-4 text-destructive" />
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-full bg-destructive/10 flex items-center justify-center">
+                <X className="w-5 h-5 text-destructive" />
               </div>
               <h3 className="text-xl font-semibold text-foreground">기존 챗봇의 문제점</h3>
             </div>
             {problems.map((problem, index) => (
               <div
                 key={index}
-                className="bg-card rounded-xl p-5 border border-border hover:border-destructive/30 transition-colors card-hover"
+                className="bento-card hover:border-destructive/20"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 rounded-xl bg-destructive/10 flex items-center justify-center flex-shrink-0">
                     <problem.icon className="w-5 h-5 text-destructive" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">{problem.title}</h4>
-                    <p className="text-sm text-muted-foreground">{problem.description}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{problem.description}</p>
                   </div>
                 </div>
               </div>
@@ -82,24 +81,24 @@ const ProblemSolutionSection = () => {
 
           {/* Solutions Column */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-full bg-emerald/10 flex items-center justify-center">
-                <Check className="w-4 h-4 text-emerald" />
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-full bg-emerald-muted flex items-center justify-center">
+                <Check className="w-5 h-5 text-emerald" />
               </div>
               <h3 className="text-xl font-semibold text-foreground">My Agent 솔루션</h3>
             </div>
             {solutions.map((solution, index) => (
               <div
                 key={index}
-                className="bg-card rounded-xl p-5 border border-border hover:border-emerald/30 transition-colors card-hover"
+                className="bento-card"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-emerald/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 rounded-xl bg-emerald-muted flex items-center justify-center flex-shrink-0">
                     <solution.icon className="w-5 h-5 text-emerald" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">{solution.title}</h4>
-                    <p className="text-sm text-muted-foreground">{solution.description}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{solution.description}</p>
                   </div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { Check, X, Sparkles } from "lucide-react";
+import { Check, X } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -41,14 +41,11 @@ const ComparisonSection = () => {
   ];
 
   return (
-    <section className="section-padding bg-muted/30">
+    <section className="section-padding">
       <div className="container mx-auto container-padding">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-light border border-indigo/20 text-indigo text-sm font-medium mb-6">
-            <Sparkles className="w-4 h-4" />
-            <span>경쟁력 비교</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-20">
+          <p className="text-emerald text-sm font-medium tracking-wide uppercase mb-4">경쟁력 비교</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight">
             왜 <span className="gradient-text">My Agent</span>인가?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -58,27 +55,27 @@ const ComparisonSection = () => {
         </div>
 
         <div className="max-w-5xl mx-auto">
-          <div className="bg-card rounded-2xl border border-border shadow-xl overflow-hidden">
+          <div className="bg-card rounded-2xl border border-border/60 shadow-xl shadow-slate/5 overflow-hidden">
             <Table>
               <TableHeader>
-                <TableRow className="bg-slate hover:bg-slate">
-                  <TableHead className="text-slate-foreground font-semibold py-4 text-white">비교 항목</TableHead>
-                  <TableHead className="text-center py-4">
+                <TableRow className="bg-slate hover:bg-slate border-b-0">
+                  <TableHead className="text-white/80 font-medium py-5 text-sm">비교 항목</TableHead>
+                  <TableHead className="text-center py-5">
                     <div className="flex flex-col items-center gap-1">
-                      <span className="gradient-text font-bold text-lg">My Agent</span>
-                      <span className="text-xs text-slate-300">(Standard/Professional)</span>
+                      <span className="text-white font-semibold text-base">My Agent</span>
+                      <span className="text-xs text-white/60">(Standard/Professional)</span>
                     </div>
                   </TableHead>
-                  <TableHead className="text-center text-white py-4">
+                  <TableHead className="text-center text-white/80 py-5 font-medium text-sm">
                     <div className="flex flex-col items-center gap-1">
-                      <span className="font-semibold">국내 경쟁사</span>
-                      <span className="text-xs text-slate-300">(C사 등)</span>
+                      <span>국내 경쟁사</span>
+                      <span className="text-xs text-white/60">(C사 등)</span>
                     </div>
                   </TableHead>
-                  <TableHead className="text-center text-white py-4">
+                  <TableHead className="text-center text-white/80 py-5 font-medium text-sm">
                     <div className="flex flex-col items-center gap-1">
-                      <span className="font-semibold">글로벌 경쟁사</span>
-                      <span className="text-xs text-slate-300">(I사 등)</span>
+                      <span>글로벌 경쟁사</span>
+                      <span className="text-xs text-white/60">(I사 등)</span>
                     </div>
                   </TableHead>
                 </TableRow>
@@ -87,28 +84,28 @@ const ComparisonSection = () => {
                 {comparisonData.map((row, index) => (
                   <TableRow 
                     key={index} 
-                    className={`transition-colors hover:bg-muted/50 ${
-                      row.highlight ? "bg-accent-light border-l-4 border-l-indigo" : ""
+                    className={`transition-colors hover:bg-muted/30 ${
+                      row.highlight ? "bg-emerald-muted border-l-2 border-l-emerald" : ""
                     }`}
                   >
-                    <TableCell className="font-medium text-foreground py-5">
+                    <TableCell className="font-medium text-foreground py-6">
                       {row.category}
                       {row.highlight && (
-                        <span className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald/10 text-emerald text-xs font-medium">
+                        <span className="ml-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald/10 text-emerald text-xs font-medium">
                           <Check className="w-3 h-3" />
                           핵심 차별점
                         </span>
                       )}
                     </TableCell>
-                    <TableCell className="text-center py-5">
+                    <TableCell className="text-center py-6">
                       <div className="flex flex-col items-center gap-1">
-                        <span className="font-bold text-indigo text-lg">{row.myAgent}</span>
+                        <span className="font-bold text-emerald text-lg">{row.myAgent}</span>
                         {row.highlight && (
                           <span className="text-xs text-emerald font-medium">전처리 포함</span>
                         )}
                       </div>
                     </TableCell>
-                    <TableCell className="text-center text-muted-foreground py-5">
+                    <TableCell className="text-center text-muted-foreground py-6">
                       <div className="flex flex-col items-center gap-1">
                         <span>{row.domestic}</span>
                         {row.highlight && (
@@ -119,7 +116,7 @@ const ComparisonSection = () => {
                         )}
                       </div>
                     </TableCell>
-                    <TableCell className="text-center text-muted-foreground py-5">
+                    <TableCell className="text-center text-muted-foreground py-6">
                       <div className="flex flex-col items-center gap-1">
                         <span>{row.global}</span>
                         {row.highlight && (
@@ -136,27 +133,27 @@ const ComparisonSection = () => {
             </Table>
           </div>
 
-          {/* Bottom highlight */}
-          <div className="mt-8 p-6 bg-gradient-to-r from-indigo/5 via-violet/5 to-emerald/5 rounded-2xl border border-indigo/10">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 gradient-indigo rounded-xl flex items-center justify-center">
-                  <Check className="w-6 h-6 text-white" />
+          {/* Bottom Stats */}
+          <div className="mt-10 p-8 bg-card rounded-2xl border border-border/60">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 gradient-emerald rounded-xl flex items-center justify-center">
+                  <Check className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground">합리적인 초기 도입비</p>
+                  <p className="font-semibold text-foreground text-lg">합리적인 초기 도입비</p>
                   <p className="text-sm text-muted-foreground">컨설팅/SI 없이 바로 시작 가능</p>
                 </div>
               </div>
-              <div className="flex items-center gap-6 text-center">
+              <div className="flex items-center gap-10 text-center">
                 <div>
-                  <p className="text-2xl font-bold gradient-text">~90%</p>
-                  <p className="text-xs text-muted-foreground">도입비 절감</p>
+                  <p className="text-3xl font-bold gradient-text">~90%</p>
+                  <p className="text-sm text-muted-foreground mt-1">도입비 절감</p>
                 </div>
-                <div className="w-px h-10 bg-border"></div>
+                <div className="w-px h-12 bg-border"></div>
                 <div>
-                  <p className="text-2xl font-bold gradient-text">1~2주</p>
-                  <p className="text-xs text-muted-foreground">빠른 도입</p>
+                  <p className="text-3xl font-bold gradient-text">1~2주</p>
+                  <p className="text-sm text-muted-foreground mt-1">빠른 도입</p>
                 </div>
               </div>
             </div>
