@@ -1,10 +1,50 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { ArrowRight, TrendingUp, Users, Zap, Shield } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { ArrowRight, User } from "lucide-react";
+
+interface ChatMessage {
+  id: number;
+  type: "user" | "ai";
+  content: string;
+  buttons?: string[];
+}
+
+const chatMessages: ChatMessage[] = [
+  {
+    id: 1,
+    type: "user",
+    content: "아이폰 16 Pro 256GB 블랙 재고 있나요?",
+  },
+  {
+    id: 2,
+    type: "ai",
+    content: "현재 매장에 3대 남아있습니다! 지금 바로 방문 예약 도와드릴까요?",
+    buttons: ["방문 예약하기", "할부금 확인하기", "다른 기종 문의"],
+  },
+];
 
 export default function HeroSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
+  const [visibleMessages, setVisibleMessages] = useState<number[]>([]);
+
+  useEffect(() => {
+    if (isInView) {
+      setVisibleMessages([]);
+      const timers: NodeJS.Timeout[] = [];
+      
+      chatMessages.forEach((msg, index) => {
+        const timer = setTimeout(() => {
+          setVisibleMessages(prev => [...prev, msg.id]);
+        }, (index + 1) * 800);
+        timers.push(timer);
+      });
+
+      return () => timers.forEach(timer => clearTimeout(timer));
+    } else {
+      setVisibleMessages([]);
+    }
+  }, [isInView]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -87,87 +127,84 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right: Dashboard Mockup */}
+          {/* Right: Chat UI Mockup */}
           <motion.div variants={itemVariants} className="relative">
             <div className="mockup-container">
-              {/* Browser Header */}
-              <div className="mockup-header">
-                <div className="mockup-dot bg-red-400" />
-                <div className="mockup-dot bg-yellow-400" />
-                <div className="mockup-dot bg-green-400" />
-                <div className="ml-4 flex-1 h-6 bg-gray-100 rounded-md" />
+              {/* Chat Header */}
+              <div className="flex items-center gap-3 px-5 py-4 bg-primary">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">M</span>
+                </div>
+                <div className="flex-1">
+                  <div className="text-white font-semibold text-sm">My Agent AI</div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                    <span className="text-white/80 text-xs">온라인</span>
+                  </div>
+                </div>
               </div>
 
-              {/* Dashboard Content */}
-              <div className="p-6 bg-gray-50 space-y-4">
-                {/* Top Stats Row */}
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="data-card">
-                    <div className="flex items-center gap-2 mb-2">
-                      <TrendingUp className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">처리량</span>
-                    </div>
-                    <div className="text-2xl font-bold text-foreground">12,847</div>
-                    <div className="text-xs text-green-600">+23.5%</div>
-                  </div>
-                  <div className="data-card">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Users className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">활성 에이전트</span>
-                    </div>
-                    <div className="text-2xl font-bold text-foreground">24</div>
-                    <div className="text-xs text-muted-foreground">실행 중</div>
-                  </div>
-                  <div className="data-card">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Zap className="w-4 h-4 text-primary" />
-                      <span className="text-xs text-muted-foreground">응답 시간</span>
-                    </div>
-                    <div className="text-2xl font-bold text-foreground">0.3s</div>
-                    <div className="text-xs text-green-600">-15%</div>
-                  </div>
-                </div>
-
-                {/* Chart Area */}
-                <div className="data-card">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-medium text-foreground">실시간 처리 현황</span>
-                    <span className="text-xs text-muted-foreground">최근 24시간</span>
-                  </div>
-                  <div className="h-32 flex items-end gap-2">
-                    {[40, 65, 45, 80, 55, 70, 85, 60, 75, 90, 70, 85].map((height, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ height: 0 }}
-                        animate={isInView ? { height: `${height}%` } : { height: 0 }}
-                        transition={{ duration: 0.5, delay: i * 0.05 }}
-                        className="flex-1 bg-gradient-to-t from-primary to-emerald-200 rounded-t"
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Activity List */}
-                <div className="data-card">
-                  <div className="text-sm font-medium text-foreground mb-3">최근 활동</div>
-                  <div className="space-y-3">
-                    {[
-                      { icon: Shield, label: "보안 검증 완료", time: "방금 전", status: "success" },
-                      { icon: Zap, label: "문서 분석 처리", time: "2분 전", status: "success" },
-                      { icon: Users, label: "고객 응대 자동화", time: "5분 전", status: "success" },
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
-                          <item.icon className="w-4 h-4 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="text-sm font-medium text-foreground">{item.label}</div>
-                          <div className="text-xs text-muted-foreground">{item.time}</div>
-                        </div>
-                        <div className="w-2 h-2 rounded-full bg-green-400" />
+              {/* Chat Body */}
+              <div className="p-5 bg-gray-50 min-h-[320px] space-y-5">
+                {chatMessages.map((message) => (
+                  <motion.div
+                    key={message.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={visibleMessages.includes(message.id) ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}
+                  >
+                    {message.type === "ai" && (
+                      <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center mr-2 flex-shrink-0">
+                        <span className="text-white font-bold text-xs">M</span>
                       </div>
-                    ))}
+                    )}
+                    <div className={`max-w-[80%] ${message.type === "user" ? "order-1" : ""}`}>
+                      <div
+                        className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+                          message.type === "user"
+                            ? "bg-gray-200 text-foreground rounded-br-md"
+                            : "bg-primary text-white rounded-bl-md"
+                        }`}
+                      >
+                        {message.content}
+                      </div>
+                      {message.buttons && visibleMessages.includes(message.id) && (
+                        <motion.div 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: 0.3 }}
+                          className="flex flex-wrap gap-2 mt-3"
+                        >
+                          {message.buttons.map((btn, i) => (
+                            <button
+                              key={i}
+                              className="px-4 py-2 text-xs font-medium rounded-full border-2 border-primary text-primary bg-white hover:bg-primary hover:text-white transition-all duration-200"
+                            >
+                              {btn}
+                            </button>
+                          ))}
+                        </motion.div>
+                      )}
+                    </div>
+                    {message.type === "user" && (
+                      <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center ml-2 flex-shrink-0">
+                        <User className="w-4 h-4 text-gray-600" />
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Chat Input */}
+              <div className="px-4 py-3 bg-white border-t border-border/50">
+                <div className="flex items-center gap-3">
+                  <div className="flex-1 px-4 py-2.5 bg-gray-100 rounded-full text-sm text-muted-foreground">
+                    메시지를 입력하세요...
                   </div>
+                  <button className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-emerald-600 transition-colors">
+                    <ArrowRight className="w-4 h-4 text-white" />
+                  </button>
                 </div>
               </div>
             </div>

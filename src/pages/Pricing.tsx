@@ -79,7 +79,7 @@ export default function Pricing() {
         <div className="container mx-auto px-6 lg:px-8 pt-8">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-primary font-medium hover:bg-primary hover:text-white transition-all duration-300"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>홈으로 돌아가기</span>
