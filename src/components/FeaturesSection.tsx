@@ -34,35 +34,125 @@ const features = [
 ];
 
 function ChartContent() {
+  const hourlyData = [12, 18, 24, 32, 28, 35, 42, 48, 52, 45, 38, 30];
+  const hours = ["09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"];
+  
   return (
-    <div className="mt-6 space-y-4">
-      <div className="flex items-center justify-between text-sm">
-        <span className="text-muted-foreground">월별 처리량</span>
-        <span className="text-primary font-semibold">+34.2%</span>
-      </div>
-      <div className="h-40 flex items-end gap-3">
-        {[45, 62, 58, 78, 65, 82, 95].map((height, i) => (
-          <div key={i} className="flex-1 flex flex-col items-center gap-2">
-            <motion.div
-              initial={{ height: 0 }}
-              whileInView={{ height: `${height}%` }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="w-full bg-gradient-to-t from-primary to-emerald-200 rounded-t-lg"
-            />
-            <span className="text-xs text-muted-foreground">
-              {["1월", "2월", "3월", "4월", "5월", "6월", "7월"][i]}
-            </span>
+    <div className="mt-6 space-y-5">
+      {/* Summary Cards */}
+      <div className="grid grid-cols-2 gap-3">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.4 }}
+          className="p-4 bg-emerald-50 rounded-xl border border-emerald-100"
+        >
+          <div className="flex items-center gap-2 mb-1">
+            <div className="w-2 h-2 rounded-full bg-primary" />
+            <span className="text-xs text-muted-foreground">오늘의 새 문의</span>
           </div>
-        ))}
+          <div className="text-2xl font-bold text-primary">24건</div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="p-4 bg-orange-50 rounded-xl border border-orange-100"
+        >
+          <div className="flex items-center gap-2 mb-1">
+            <div className="w-2 h-2 rounded-full bg-orange-500" />
+            <span className="text-xs text-muted-foreground">미응답 알람</span>
+          </div>
+          <div className="text-2xl font-bold text-orange-600">3건</div>
+        </motion.div>
       </div>
+
+      {/* Line Chart - 시간대별 문의 현황 */}
+      <div className="p-4 bg-gray-50 rounded-xl border border-border/50">
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-sm font-medium text-foreground">시간대별 문의 현황</span>
+          <span className="text-xs text-muted-foreground">오늘</span>
+        </div>
+        
+        {/* Chart Area */}
+        <div className="relative h-32">
+          {/* Grid Lines */}
+          <div className="absolute inset-0 flex flex-col justify-between">
+            {[0, 1, 2, 3].map((_, i) => (
+              <div key={i} className="border-b border-border/30" />
+            ))}
+          </div>
+          
+          {/* Line Chart SVG */}
+          <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            
+            {/* Area Fill */}
+            <motion.path
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.8 }}
+              d={`M 0 ${128 - (hourlyData[0] / 60) * 128} ${hourlyData.map((val, i) => `L ${(i / (hourlyData.length - 1)) * 100}% ${128 - (val / 60) * 128}`).join(' ')} L 100% 128 L 0 128 Z`}
+              fill="url(#chartGradient)"
+            />
+            
+            {/* Line */}
+            <motion.path
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: false }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              d={`M 0 ${128 - (hourlyData[0] / 60) * 128} ${hourlyData.map((val, i) => `L ${(i / (hourlyData.length - 1)) * 100}% ${128 - (val / 60) * 128}`).join(' ')}`}
+              fill="none"
+              stroke="hsl(var(--primary))"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            
+            {/* Data Points */}
+            {hourlyData.map((val, i) => (
+              <motion.circle
+                key={i}
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.3, delay: 0.1 * i }}
+                cx={`${(i / (hourlyData.length - 1)) * 100}%`}
+                cy={128 - (val / 60) * 128}
+                r="4"
+                fill="white"
+                stroke="hsl(var(--primary))"
+                strokeWidth="2"
+              />
+            ))}
+          </svg>
+        </div>
+        
+        {/* X-axis Labels */}
+        <div className="flex justify-between mt-2 px-1">
+          {hours.filter((_, i) => i % 3 === 0).map((hour, i) => (
+            <span key={i} className="text-xs text-muted-foreground">{hour}시</span>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom Stats */}
       <div className="grid grid-cols-3 gap-4 pt-4 border-t border-border/50">
         <div>
           <div className="text-lg font-bold text-foreground">156,847</div>
           <div className="text-xs text-muted-foreground">총 처리 건수</div>
         </div>
         <div>
-          <div className="text-lg font-bold text-foreground">0.28s</div>
+          <div className="text-lg font-bold text-primary">0.28s</div>
           <div className="text-xs text-muted-foreground">평균 응답시간</div>
         </div>
         <div>
