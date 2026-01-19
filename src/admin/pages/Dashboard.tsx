@@ -4,6 +4,11 @@ import { SummaryCard } from "@/admin/components/dashboard/SummaryCard";
 import { InquiryChart } from "@/admin/components/dashboard/InquiryChart";
 import { PopularModels } from "@/admin/components/dashboard/PopularModels";
 import { UnansweredAlerts } from "@/admin/components/dashboard/UnansweredAlerts";
+import { SubscriptionTypeChart } from "@/admin/components/dashboard/SubscriptionTypeChart";
+import { CarrierChannelChart } from "@/admin/components/dashboard/CarrierChannelChart";
+import { AIUnansweredList } from "@/admin/components/dashboard/AIUnansweredList";
+import { ModelStockStatus } from "@/admin/components/dashboard/ModelStockStatus";
+import { CustomerPersonaAnalysis } from "@/admin/components/dashboard/CustomerPersonaAnalysis";
 
 export default function Dashboard() {
   return (
@@ -59,6 +64,27 @@ export default function Dashboard() {
           {/* Bottom Row - Unanswered Alerts */}
           <div className="lg:col-span-12">
             <UnansweredAlerts />
+          </div>
+
+          {/* Sales Insights Row 1 - Subscription Type & Carrier Channel */}
+          <div className="lg:col-span-6">
+            <SubscriptionTypeChart />
+          </div>
+          <div className="lg:col-span-6">
+            <CarrierChannelChart />
+          </div>
+
+          {/* Sales Insights Row 2 - AI Unanswered & Model Stock */}
+          <div className="lg:col-span-6">
+            <AIUnansweredList />
+          </div>
+          <div className="lg:col-span-6">
+            <ModelStockStatus />
+          </div>
+
+          {/* Sales Insights Row 3 - Customer Persona */}
+          <div className="lg:col-span-12">
+            <CustomerPersonaAnalysis />
           </div>
         </div>
       </div>
