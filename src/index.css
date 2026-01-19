@@ -20,12 +20,23 @@
     --primary-foreground: 0 0% 100%;
     
     /* Emerald Variations */
+    --emerald: 168 100% 19%;
+    --emerald-light: 166 76% 97%;
+    --emerald-dark: 168 100% 15%;
     --emerald-50: 166 76% 97%;
     --emerald-100: 167 85% 89%;
     --emerald-200: 168 84% 78%;
     --emerald-500: 168 100% 19%;
     --emerald-600: 168 100% 15%;
     --emerald-700: 168 100% 12%;
+    
+    /* Cool Gray Scale */
+    --cool-gray-50: 210 20% 98%;
+    --cool-gray-100: 210 16% 95%;
+    --cool-gray-200: 214 14% 90%;
+    --cool-gray-300: 214 12% 80%;
+    --cool-gray-400: 215 12% 65%;
+    --cool-gray-500: 215 14% 45%;
     
     /* Neutral Scale */
     --gray-50: 0 0% 98%;
@@ -188,6 +199,32 @@
   .bento-card:hover {
     box-shadow: var(--shadow-elevated);
     transform: translateY(-2px);
+  }
+
+  .bento-card-lg {
+    @apply relative overflow-hidden rounded-2xl bg-card border border-border/50 p-8;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .bento-card-lg:hover {
+    box-shadow: var(--shadow-elevated);
+    transform: translateY(-2px);
+  }
+
+  .stat-card {
+    @apply relative overflow-hidden rounded-2xl bg-card border border-border/50 p-6;
+    box-shadow: 0 1px 2px 0 hsl(0 0% 0% / 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .stat-card:hover {
+    box-shadow: 0 4px 6px -1px hsl(0 0% 0% / 0.05), 0 2px 4px -2px hsl(0 0% 0% / 0.05);
+  }
+
+  .floating-alert {
+    @apply relative overflow-hidden rounded-2xl bg-card border border-border/50 p-6;
+    box-shadow: 0 1px 2px 0 hsl(0 0% 0% / 0.03);
   }
 
   /* Button Variants */

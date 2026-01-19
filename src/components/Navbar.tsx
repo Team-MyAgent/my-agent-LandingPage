@@ -61,9 +61,12 @@ export default function Navbar() {
             >
               요금제
             </Link>
-            <button className="btn-primary py-2.5 px-6 text-sm">
+            <Link
+              to="/admin"
+              className="btn-primary py-2.5 px-6 text-sm"
+            >
               로그인
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -104,9 +107,13 @@ export default function Navbar() {
                   >
                     요금제
                   </Link>
-                  <button className="w-full btn-primary py-3 text-sm">
+                  <Link
+                    to="/admin"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full btn-primary py-3 text-sm text-center block"
+                  >
                     로그인
-                  </button>
+                  </Link>
                 </div>
               </div>
             </motion.div>

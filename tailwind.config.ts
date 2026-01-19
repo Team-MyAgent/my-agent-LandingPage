@@ -62,12 +62,23 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         emerald: {
+          DEFAULT: "hsl(var(--emerald))",
+          light: "hsl(var(--emerald-light))",
+          dark: "hsl(var(--emerald-dark))",
           50: "hsl(var(--emerald-50))",
           100: "hsl(var(--emerald-100))",
           200: "hsl(var(--emerald-200))",
           500: "hsl(var(--emerald-500))",
           600: "hsl(var(--emerald-600))",
           700: "hsl(var(--emerald-700))",
+        },
+        "cool-gray": {
+          50: "hsl(var(--cool-gray-50))",
+          100: "hsl(var(--cool-gray-100))",
+          200: "hsl(var(--cool-gray-200))",
+          300: "hsl(var(--cool-gray-300))",
+          400: "hsl(var(--cool-gray-400))",
+          500: "hsl(var(--cool-gray-500))",
         },
         gray: {
           50: "hsl(var(--gray-50))",
@@ -88,6 +99,12 @@ export default {
         sm: "calc(var(--radius) - 4px)",
         "2xl": "1rem",
         "3xl": "1.5rem",
+      },
+      boxShadow: {
+        "bento": "0 1px 2px 0 hsl(0 0% 0% / 0.03)",
+        "bento-hover": "0 4px 6px -1px hsl(0 0% 0% / 0.05), 0 2px 4px -2px hsl(0 0% 0% / 0.05)",
+        "bento-lg": "0 10px 15px -3px hsl(0 0% 0% / 0.05), 0 4px 6px -4px hsl(0 0% 0% / 0.05)",
+        "float": "0 20px 25px -5px hsl(0 0% 0% / 0.06), 0 8px 10px -6px hsl(0 0% 0% / 0.04)",
       },
       keyframes: {
         "accordion-down": {
@@ -114,6 +131,10 @@ export default {
           "0%": { opacity: "0", transform: "translateX(20px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
+        "slide-in": {
+          from: { opacity: "0", transform: "translateX(-10px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
@@ -121,6 +142,10 @@ export default {
         pulse: {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
+        },
+        "pulse-soft": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.7" },
         },
       },
       animation: {
@@ -130,8 +155,10 @@ export default {
         "fade-in": "fade-in 0.4s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
         "slide-in-right": "slide-in-right 0.4s ease-out",
+        "slide-in": "slide-in 0.3s ease-out",
         "float": "float 3s ease-in-out infinite",
         "pulse": "pulse 2s ease-in-out infinite",
+        "pulse-soft": "pulse-soft 2s ease-in-out infinite",
       },
     },
   },
