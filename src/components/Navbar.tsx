@@ -7,6 +7,7 @@ const navItems = [
   { label: "주요 기능", href: "#features" },
   { label: "이용 방법", href: "#how-it-works" },
   { label: "자주 묻는 질문", href: "#faq" },
+  { label: "도입 문의하기", href: "#contact" },
 ];
 
 export default function Navbar() {
