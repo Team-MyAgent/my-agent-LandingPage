@@ -12,14 +12,24 @@ interface ChatMessage {
 const chatMessages: ChatMessage[] = [
   {
     id: 1,
-    type: "user",
-    content: "아이폰 16 Pro 256GB 블랙 재고 있나요?",
+    type: "ai",
+    content: "안녕하세요! 비즈니스를 위한 완벽한 AI 파트너, My Agent입니다. 😊",
   },
   {
     id: 2,
     type: "ai",
-    content: "현재 매장에 3대 남아있습니다! 지금 바로 방문 예약 도와드릴까요?",
-    buttons: ["방문 예약하기", "할부금 확인하기", "다른 기종 문의"],
+    content: "업장의 운영 효율을 높여주는 RAG 기반 CS 상담을 지금 바로 체험해보세요.",
+  },
+  {
+    id: 3,
+    type: "user",
+    content: "아이폰 16 Pro 256GB 블랙 모델 재고가 있나요?",
+  },
+  {
+    id: 4,
+    type: "ai",
+    content: "잠시만요... 네, 현재 매장에 3대 남아있습니다! 바로 방문 예약을 도와드릴까요?",
+    buttons: ["방문 예약하기", "할부금 확인", "다른 기종 문의"],
   },
 ];
 
@@ -101,13 +111,17 @@ export default function HeroSection() {
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-              <button className="btn-primary group">
-                무료로 시작하기
+              <a 
+                href="#contact" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="btn-primary group cursor-pointer"
+              >
+                도입 문의하기
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
-              <button className="btn-secondary">
-                데모 요청
-              </button>
+              </a>
             </motion.div>
 
             {/* Stats */}
@@ -145,7 +159,7 @@ export default function HeroSection() {
               </div>
 
               {/* Chat Body */}
-              <div className="p-5 bg-gray-50 min-h-[320px] space-y-5">
+              <div className="p-5 bg-gray-50 min-h-[420px] space-y-4">
                 {chatMessages.map((message) => (
                   <motion.div
                     key={message.id}
