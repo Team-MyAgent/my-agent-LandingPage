@@ -45,6 +45,9 @@ export default function ContactSection() {
           email: formData.email,
           message: formData.message,
         }),
+        // CORS 문제 디버깅을 위한 옵션
+        mode: "cors",
+        credentials: "omit",
       });
 
       if (!response.ok) {
@@ -68,8 +71,16 @@ export default function ContactSection() {
       });
     } catch (error) {
       console.error("폼 제출 오류:", error);
+      
+      // CORS 에러인지 확인
+      let errorMessage = error instanceof Error ? error.message : "잠시 후 다시 시도해주세요.";
+      if (error instanceof TypeError && error.message.includes("fetch")) {
+        console.error("CORS 또는 네트워크 오류 가능성:", error);
+        errorMessage = "서버 연결에 문제가 발생했습니다. CORS 설정을 확인해주세요.";
+      }
+      
       toast.error("문의 전송에 실패했습니다.", {
-        description: error instanceof Error ? error.message : "잠시 후 다시 시도해주세요.",
+        description: errorMessage,
         duration: 5000,
       });
     } finally {
