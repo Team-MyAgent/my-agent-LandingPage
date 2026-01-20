@@ -29,7 +29,8 @@ export default function ContactSection() {
 
     try {
       // API 베이스 URL 설정 (환경 변수 또는 기본값)
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://54.66.22.242:8000";
+      // 프로덕션 기본값: HTTPS 도메인 사용
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "https://api.myagent.ai.kr";
       const apiUrl = `${apiBaseUrl}/api/contact`;
 
       const response = await fetch(apiUrl, {
