@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Bot } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const navItems = [
   { label: "주요 기능", href: "#features" },
-  { label: "이용 방법", href: "#how-it-works" },
+  { label: "도입 과정", href: "#how-it-works" },
   { label: "자주 묻는 질문", href: "#faq" },
-  { label: "도입 문의하기", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -34,7 +34,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">M</span>
+              <Bot className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="font-display font-bold text-xl text-foreground">My Agent</span>
           </Link>
@@ -54,19 +54,25 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-4">
-            <Link
-              to="/pricing"
-              className="btn-outline"
+          <div className="hidden md:flex items-center gap-3">
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/admin">로그인</Link>
+            </Button>
+            <Button
+              variant="gradient"
+              size="sm"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.querySelector("#contact");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth", block: "start" });
+                } else if (!isHome) {
+                  window.location.href = "/#contact";
+                }
+              }}
             >
-              요금제
-            </Link>
-            <Link
-              to="/admin"
-              className="btn-primary py-2.5 px-6 text-sm"
-            >
-              로그인
-            </Link>
+              도입 문의하기
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}

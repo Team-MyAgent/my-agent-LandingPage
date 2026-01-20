@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Send, Building2, User, Phone, Mail, MessageSquare } from "lucide-react";
+import { Send, Building2, User, Phone, Mail, MessageSquare, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 export default function ContactSection() {
   const ref = useRef(null);
@@ -12,16 +13,67 @@ export default function ContactSection() {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    try {
+      // API 베이스 URL 설정 (환경 변수 또는 기본값)
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://54.66.22.242:8000";
+      const apiUrl = `${apiBaseUrl}/api/contact`;
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          phone: formData.phone,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `서버 오류: ${response.status}`);
+      }
+
+      // 성공 메시지 표시
+      toast.success("문의가 성공적으로 전송되었습니다!", {
+        description: "곧 연락드리겠습니다.",
+        duration: 5000,
+      });
+
+      // 폼 초기화
+      setFormData({
+        name: "",
+        company: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("폼 제출 오류:", error);
+      toast.error("문의 전송에 실패했습니다.", {
+        description: error instanceof Error ? error.message : "잠시 후 다시 시도해주세요.",
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const containerVariants = {
@@ -169,10 +221,20 @@ export default function ContactSection() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full btn-primary py-4 text-base group"
+              disabled={isSubmitting}
+              className="w-full btn-primary py-4 text-base group disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              도입 문의하기
-              <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>전송 중...</span>
+                </>
+              ) : (
+                <>
+                  <span>도입 문의하기</span>
+                  <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </>
+              )}
             </button>
 
             <p className="text-center text-sm text-muted-foreground mt-6">

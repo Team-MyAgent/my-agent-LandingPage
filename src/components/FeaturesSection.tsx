@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { BarChart3, MessageSquare, Brain, Shield, TrendingUp, Zap, Users, Clock } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { BarChart3, MessageSquare, Brain, Shield, TrendingUp, Zap, Users, Clock, Send, Loader2 } from "lucide-react";
 
 const features = [
   {
@@ -165,42 +165,125 @@ function ChartContent() {
 }
 
 function ChatContent() {
+  const [visibleMessages, setVisibleMessages] = useState<number[]>([]);
+  const [showTyping, setShowTyping] = useState(false);
+  
   const messages = [
     { role: "user", text: "이번 달 매출 데이터 분석해줘" },
-    { role: "agent", text: "분석 완료. 전월 대비 23% 상승했습니다. 주요 성장 요인은 신규 고객 유입입니다." },
-    { role: "user", text: "상세 리포트 생성해줘" },
+    { role: "agent", text: "분석 완료. 전월 대비 23% 상승했습니다.\n주요 성장 요인은 신규 고객 유입입니다." },
+    { role: "user", text: "상세 리포트 작성해줘" },
+    { role: "agent", text: "네, 매출 상세 리포트 생성을 완료했습니다.\n요약본을 팀 채널로 공유할까요?" },
+    { role: "user", text: "응, 슬랙으로 공유해줘." },
+    { role: "agent", text: "확인되었습니다. 리포트 공유를 완료했습니다.\n다른 도움이 필요하신가요?" },
   ];
 
+  useEffect(() => {
+    // 메시지들을 순차적으로 표시
+    setVisibleMessages([]);
+    setShowTyping(false);
+    
+    const timers: NodeJS.Timeout[] = [];
+    messages.forEach((_, i) => {
+      const timer = setTimeout(() => {
+        setVisibleMessages((prev) => [...prev, i]);
+        // 마지막 메시지 후 타이핑 인디케이터 표시
+        if (i === messages.length - 1) {
+          setTimeout(() => {
+            setShowTyping(true);
+          }, 500);
+        }
+      }, i * 400);
+      timers.push(timer);
+    });
+
+    return () => {
+      timers.forEach((timer) => clearTimeout(timer));
+    };
+  }, []);
+
   return (
-    <div className="mt-6 space-y-3">
-      {messages.map((msg, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, x: msg.role === "user" ? 20 : -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.4, delay: i * 0.15 }}
-          className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-        >
-          <div
-            className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm ${
-              msg.role === "user"
-                ? "bg-primary text-primary-foreground rounded-br-md"
-                : "bg-gray-100 text-foreground rounded-bl-md"
-            }`}
-          >
-            {msg.text}
-          </div>
-        </motion.div>
-      ))}
-      <div className="flex items-center gap-2 pt-2">
-        <div className="flex-1 h-10 bg-gray-100 rounded-full px-4 flex items-center">
-          <span className="text-sm text-muted-foreground">메시지를 입력하세요...</span>
-        </div>
-        <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-          <Zap className="w-4 h-4 text-primary-foreground" />
+    <div className="mt-6 flex flex-col flex-1 min-h-0">
+      {/* Messages Area - flex-grow로 공간 차지 */}
+      <div className="flex-1 overflow-y-auto pr-2 chat-scrollbar min-h-0">
+        <div className="pb-2">
+          {messages.map((msg, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: msg.role === "user" ? 20 : -20 }}
+              animate={visibleMessages.includes(i) ? { opacity: 1, x: 0 } : { opacity: 0, x: msg.role === "user" ? 20 : -20 }}
+              transition={{ duration: 0.4 }}
+              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} mb-3`}
+            >
+              <div
+                className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm whitespace-pre-line ${
+                  msg.role === "user"
+                    ? "bg-primary text-primary-foreground rounded-br-md"
+                    : "bg-gray-100 text-foreground rounded-bl-md"
+                }`}
+              >
+                {msg.text}
+              </div>
+            </motion.div>
+          ))}
+          
+          {/* Typing Indicator */}
+          {showTyping && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex justify-start mb-3"
+            >
+              <div className="bg-gray-100 rounded-2xl rounded-bl-md px-4 py-2.5 flex items-center gap-1.5">
+                <div className="flex gap-1">
+                  <motion.div
+                    className="w-2 h-2 bg-muted-foreground rounded-full"
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                  />
+                  <motion.div
+                    className="w-2 h-2 bg-muted-foreground rounded-full"
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
+                  />
+                  <motion.div
+                    className="w-2 h-2 bg-muted-foreground rounded-full"
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
+                  />
+                </div>
+                <span className="text-xs text-muted-foreground">입력 중...</span>
+              </div>
+            </motion.div>
+          )}
         </div>
       </div>
+
+      {/* Input Area - 하단 고정 */}
+      <div className="flex items-center gap-2 pt-3 flex-shrink-0 border-t border-border/30 mt-auto">
+        <div className="flex-1 h-10 bg-gray-100 rounded-full px-4 flex items-center">
+          <span className="text-sm text-muted-foreground">질문을 입력하세요...</span>
+        </div>
+        <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+          <Send className="w-4 h-4 text-primary-foreground" />
+        </div>
+      </div>
+
+      {/* Custom Scrollbar Styles */}
+      <style>{`
+        .chat-scrollbar::-webkit-scrollbar {
+          width: 4px;
+        }
+        .chat-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .chat-scrollbar::-webkit-scrollbar-thumb {
+          background: hsl(var(--muted-foreground) / 0.2);
+          border-radius: 2px;
+        }
+        .chat-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: hsl(var(--muted-foreground) / 0.3);
+        }
+      `}</style>
     </div>
   );
 }
@@ -331,9 +414,9 @@ export default function FeaturesSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className={`bento-card ${feature.size === "large" ? "md:col-span-1" : ""}`}
+              className={`bento-card ${feature.size === "large" ? "md:col-span-1" : ""} ${feature.content === "chat" ? "flex flex-col" : ""}`}
             >
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-4 flex-shrink-0">
                 <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
                   <feature.icon className="w-6 h-6 text-primary" />
                 </div>
@@ -342,10 +425,12 @@ export default function FeaturesSection() {
                   <p className="text-muted-foreground">{feature.description}</p>
                 </div>
               </div>
-              {feature.content === "chart" && <ChartContent />}
-              {feature.content === "chat" && <ChatContent />}
-              {feature.content === "automation" && <AutomationContent />}
-              {feature.content === "security" && <SecurityContent />}
+              <div className={feature.content === "chat" ? "flex-1 flex flex-col min-h-0" : ""}>
+                {feature.content === "chart" && <ChartContent />}
+                {feature.content === "chat" && <ChatContent />}
+                {feature.content === "automation" && <AutomationContent />}
+                {feature.content === "security" && <SecurityContent />}
+              </div>
             </motion.div>
           ))}
         </div>
