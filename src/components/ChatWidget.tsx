@@ -80,16 +80,10 @@ const ChatWidget = () => {
         body: JSON.stringify({
           question: userMessage.content,
         }),
-        // CORS 문제 디버깅을 위한 옵션
-        mode: "cors",
-        credentials: "omit",
       });
 
-      // CORS 에러 체크
       if (!response.ok) {
-        const errorText = await response.text().catch(() => "알 수 없는 오류");
-        console.error("API 응답 오류:", response.status, errorText);
-        throw new Error(`서버 오류: ${response.status}`);
+        throw new Error("응답을 받는 중 오류가 발생했습니다");
       }
 
       const data = await response.json();
@@ -104,18 +98,10 @@ const ChatWidget = () => {
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
       console.error("API 호출 오류:", error);
-      
-      // CORS 에러인지 확인
-      let errorContent = "죄송합니다. 일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
-      if (error instanceof TypeError && error.message.includes("fetch")) {
-        console.error("CORS 또는 네트워크 오류 가능성:", error);
-        errorContent = "서버 연결에 문제가 발생했습니다. CORS 설정을 확인해주세요.";
-      }
-      
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: "ai",
-        content: errorContent,
+        content: "죄송합니다. 일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMessage]);
