@@ -99,10 +99,10 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.h1 variants={itemVariants} className="hero-headline text-foreground">
-              <span className="block">거품을 뺀</span>
-              <span className="block text-primary">구축비,</span>
-              <span className="block">압도적인</span>
-              <span className="block">정확도</span>
+              <span className="block">하루 커피</span>
+              <span className="block text-primary">한 잔 값,</span>
+              <span className="block">24시간</span>
+              <span className="block">CS 상담원</span>
             </motion.h1>
 
             <motion.p variants={itemVariants} className="hero-subheadline">
